@@ -1,0 +1,41 @@
+common:
+  seed: 42
+  device: "cuda:0"
+  batch_size: 1
+  root_test: "./data/test_volume/"
+
+
+aquisition_params:
+  volume_size: [160, 192, 192]
+  det_count_u: 700
+  det_count_v: 500
+  det_spacing_u: 0.5
+  det_spacing_v: 0.5
+  src_dist: 785
+  det_dist: 415
+  noise_intensity: 500000.0 # 5e5
+  n_base_angles: 120 # this is the number of angles used to generate the ground truth motion pattern, and can be different from n_angles, which is the number of angles used for reconstruction
+  n_angles: 40
+  angle_batch_size: 20 # this one should be a divisor of n_angles, and can be reduced to fit in your memory
+  n_control_points: 30
+  motion_amplitude_degree: 5 
+  motion_amplitude_translation: 5
+
+generate_data:
+  output_path: "./data/simulated/"
+
+adm_jrm:
+  model_path: "./weights/model_state_dict.pth"
+  motion_lr: [0.1, 0.1]
+  x_lr: 0.5
+  gamma: 10000
+  input_path: "./data/simulated/gts_and_measurements.pt"
+  output_path: "./data/recon"
+  plot_output_dir: "./outputs/tmp"
+
+diffusion:
+  beta_start: 0.0001
+  beta_end: 0.02
+  diffusion_timesteps: 1000
+  steps: 100
+  eta: 0.0
