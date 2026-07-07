@@ -1,6 +1,6 @@
-# ADM-JRM
+# JRM-ADM
 
-Official implementation of our paper on adaptive diffusion model based joint reconstruction and motion compensation.
+Official implementation of **Adaptive Diffusion Models for Sparse-View Motion-Corrected Head Cone-Beam CT**.
 
 ## Installation
 
